@@ -1,0 +1,11 @@
+<!-- pages/task/task.wxml -->
+<view class="body">
+    <view class="card-wrapper">
+        <view class="button1">
+            <i-button bind:click="handlePrictise" type="primary">练习题</i-button>
+        </view>
+        <view class="button2">
+            <i-button bind:click="handleExam" type="primary">正式题</i-button>
+        </view>
+    </view>
+</view>

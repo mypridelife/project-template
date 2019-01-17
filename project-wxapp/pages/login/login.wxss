@@ -1,0 +1,6 @@
+/* pages/login/login.wxss */
+.btn-class {
+  margin-top: 50%;
+  margin-bottom: 50%;
+  margin-left: 10px;
+}

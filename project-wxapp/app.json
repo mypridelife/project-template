@@ -1,0 +1,22 @@
+{
+  "pages": [
+    "pages/login/login",
+    "pages/index/index",
+    "pages/details/details",
+    "pages/user/user",
+    "pages/task/task",
+    "pages/chooseExam/chooseExam",
+    "pages/exam/exam",
+    "pages/practise/practise",
+    "pages/beforeExam/beforeExam",
+    "pages/beforefinish/beforefinish",
+    "pages/finish/finish",
+    "pages/anew/anew"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "Exam",
+    "navigationBarTextStyle": "black"
+  }
+}

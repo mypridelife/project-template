@@ -1,0 +1,10 @@
+<view>
+    <i-col span="10" offset='7' i-class="btn-class">
+        <i-button open-type="getUserInfo" bindgetuserinfo="getUserInfo" type="primary">
+            授权登录
+        </i-button>
+    </i-col>
+    <i-modal visible="{{ visible1 }}" bind:ok="handleOk" show-cancel="{{cancle}}">
+        <view>授权之后才能后续操作哦</view>
+    </i-modal>
+</view>

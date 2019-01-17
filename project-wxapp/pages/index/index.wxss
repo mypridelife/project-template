@@ -1,0 +1,30 @@
+/* pages/index/index.wxss */
+.image-wrapper {
+  vertical-align: middle;
+  width: 70rpx;
+  height: 70rpx;
+  border-radius: 50%;
+}
+.distance {
+  height: 50px;
+}
+.card-wrapper {
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+.content-wrapper {
+  display: flex;
+  align-items: center;
+  padding: 10px;
+}
+/* .title-wrapper {
+  flex: 1;
+  text-align: left;
+}
+.extra-wrapper {
+  flex: 1;
+  text-align: right;
+} */
+.foot-wrapper {
+  padding: 10px;
+}

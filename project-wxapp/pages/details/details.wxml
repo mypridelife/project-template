@@ -1,0 +1,125 @@
+<view class='page-wrapper'>
+    <view class='header-wrapper'>
+        <i-row>
+            <i-col span="24" i-class="col-class">
+                <i-panel title="答题情况"></i-panel>
+            </i-col>
+        </i-row>
+    </view>
+    <view class='body-wrapper'>
+        <view class='card-wrapper' wx:for="{{questionLists}}">
+            <i-card>
+                <view slot="content">
+                    <view class='question-wrapper'>{{index+1}}、{{item.question.stem}}</view>
+                    <view class='option-wrapper' wx:if="{{item.questionType===0}}">
+                        <i-panel>
+                            <!-- <i-radio-group current="{{item.candidateAnswer}}" bindchange="handleRadioChange">
+                                <i-radio disabled wx:for="{{item.question.options}}" position="left" wx:key="{{item.optionId}}" value="{{item.value}}"></i-radio>
+                            </i-radio-group> -->
+                            <van-radio-group value="{{ item.candidateAnswer }}">
+                                <van-cell-group>
+                                    <van-cell wx:for="{{item.question.options}}" wx:key="{{item.optionId}}" title="{{item.optionId}}：{{item.value}}">
+                                        <van-radio name="{{item.optionId}}"></van-radio>
+                                    </van-cell>
+                                </van-cell-group>
+                            </van-radio-group>
+                            <!-- <i-row>
+                                <i-col span="4">
+                                    <view style="margin-top:12px">
+                                        <i-icon type="right" wx:if="{{item.answer}}" color="green" size="28" />
+                                        <i-icon type="close" wx:else color="red" size="28" />
+                                    </view>
+                                </i-col>
+                                <i-col span="18">
+                                    <i-input wx:if="{{!item.answer}}" value="{{ item.correctAnswer }}" title="正确答案:" disabled />
+                                </i-col>
+                            </i-row> -->
+                        </i-panel>
+                    </view>
+                    <view wx:if="{{item.questionType===1}}">
+                        <i-panel>
+                            <!-- <i-checkbox-group current="{{item.candidateAnswerArr}}" bindchange="handleCheckboxChange">
+                                <i-checkbox disabled wx:for="{{item.question.options}}" position="left" wx:key="{{item.optionId}}" value="{{item.value}}"></i-checkbox>
+                            </i-checkbox-group> -->
+                            <van-checkbox-group value="{{ item.candidateAnswerArr }}">
+                                <van-cell-group>
+                                    <van-cell wx:for="{{ item.question.options }}" wx:key="{{ index }}" title="{{ item.optionId }}：{{item.value}}" value-class="value-class">
+                                        <van-checkbox class="checkboxes-{{ item.optionId }}" name="{{ item.optionId }}" />
+                                    </van-cell>
+                                </van-cell-group>
+                            </van-checkbox-group>
+                        </i-panel>
+                        <!-- <i-row>
+                            <i-col span="4">
+                                <view style="margin-top:12px">
+                                    <i-icon type="right" wx:if="{{item.answer}}" color="green" size="28" />
+                                    <i-icon type="close" wx:else color="red" size="28" />
+                                </view>
+                            </i-col>
+                            <i-col span="20">
+                                <i-input wx:if="{{!item.answer}}" value="{{ item.correctAnswerArr }}" type="textarea" title="正确答案:" disabled />
+                            </i-col>
+                        </i-row> -->
+                    </view>
+                    <view wx:if="{{item.questionType===3&&item.answerType===0}}">
+                        <i-panel>
+                            <i-input value="{{ item.candidateAnswerText }}" disabled type="textarea" mode="wrapped" />
+                        </i-panel>
+                    </view>
+                    <view class='zhuguan1-wrapper' wx:if='{{item.questionType===3&&item.answerType===1}}'>
+                        <i-row>
+                            <i-col span="10">
+                                <i-input title="语音答案:" disabled />
+                            </i-col>
+                            <i-col span="14">
+                                <i-button bindtap="playRecord" data-candidateAnswerMp3="{{item.candidateAnswerMp3}}" size="small " inline>
+                                    播放
+                                </i-button>
+                            </i-col>
+                        </i-row>
+                    </view>
+                    <view class="zhuguan2-wrapper" wx:if="{{item.questionType===3&&item.answerType===2}}">
+                        <view class="question-images">
+                            <block wx:for="{{item.candidateAnswerImg}}" wx:key="*this">
+                                <view class="q-image-wrap">
+                                    <!-- 图片缩略图 -->
+                                    <image class="q-image" src="{{item}}" mode="aspectFill"></image>
+                                </view>
+                            </block>
+                        </view>
+                    </view>
+                    <view class="zhuguan2-wrapper" wx:if="{{item.questionType===3&&item.answerType===4}}">
+                        <view class="question-images">
+                            <video src="{{item.candidateAnswerVideo}}"></video>
+                        </view>
+                    </view>
+                    <view class="zhuguan2-wrapper" wx:if="{{item.questionType===3&&item.answerType===5}}">
+                        <view class="question-images">
+                            <i-panel title="名称：{{item.candidateAnswerLocation.name}}">
+                                <view style="padding: 15px;">
+                                    地址：{{item.candidateAnswerLocation.address}}
+                                </view>
+                            </i-panel>
+                        </view>
+                    </view>
+                    <!-- <view class="zhuguan2-wrapper" wx:if="{{zhuguan3}}">
+                        <block wx:if="{{candidateAnswerFile != ''}}">
+                            <video src="{{candidateAnswerFile}}"></video>
+                            <view class="q-image-remover" bindtap="removeFile">删除</view>
+                        </block>
+                        <view class="uploadImg-wrapper">
+                            <i-button bindtap="uploadFile">选择文件</i-button>
+                        </view>
+                    </view> -->
+                    <!-- <block wx:else>
+                           <i-panel title="没有附件"></i-panel>
+                        </block> -->
+                </view>
+            </i-card>
+        </view>
+    </view>
+    <i-message id="message" />
+    <i-modal visible="{{ visible2 }}" bind:ok="handleNavigate" bind:cancel="handleClose2">
+        <view>确定交卷？</view>
+    </i-modal>
+</view>

@@ -1,0 +1,10 @@
+{
+  "usingComponents": {
+    "i-button": "../../dist/button/index",
+    "i-card": "../../dist/card/index",
+    "i-modal": "../../dist/modal/index",
+    "i-message": "../../dist/message/index",
+    "i-toast": "../../dist/toast/index"
+  },
+  "navigationBarTitleText": "任务详情"
+}
