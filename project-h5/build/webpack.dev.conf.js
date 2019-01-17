@@ -57,6 +57,13 @@ const devWebpackConfig = merge(baseWebpackConfig, {
       template: 'index.html',
       inject: true
     }),
+    new HtmlWebpackPlugin({
+      filename: config.build.ddlogin,
+      template: 'ddlogin.html',
+      inject: false,
+      title: '加载中...',
+      ddloginapi: process.env.BASE_API,
+    }),
     // copy custom static assets
     new CopyWebpackPlugin([
       {

@@ -1,6 +1,6 @@
 <template>
   <div class="page">
-    {{ msg }}
+    404
   </div>
 </template>
 
@@ -8,7 +8,7 @@
 export default {
   data() {
     return {
-      msg: '登陆成功！'
+
     }
   },
   methods: {

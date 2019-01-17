@@ -5,17 +5,16 @@
       v-model="isLoading"
       @refresh="onRefresh"
     >
+
       <div>
-        <div
-          v-if="hasData"
-          class="page-body"
-        >
+
+        <div v-if="hasData" class="page-body">
           <van-cell-group
             v-for="(item,index) in records"
             :key="index"
           >
             <van-cell
-              :value="item.projectName"
+              :value="item.boardName"
               class="my-cell"
               clickable
               @click="handleClick(item.id)"
@@ -25,7 +24,7 @@
 
         <div v-else>
           <van-cell
-            value="暂无项目"
+            value="暂无页面"
             class="my-cell"
           />
         </div>
@@ -38,6 +37,7 @@
             @change="handleChange"
           />
         </div>
+
       </div>
 
     </van-pull-refresh>
@@ -46,36 +46,36 @@
 </template>
 
 <script>
-import { getProjectList } from '../../api/index.js'
+import { getBoardList } from '../../api/leaf.js'
 export default {
   data() {
     return {
       isLoading: false,
       hasData: true,
-      projectPage: {},
+      boardPage: {},
       records: [],
-      pageSize: 5,
+      pageSize: 10,
       currentPage: 1,
-      pages: 1
+      pages: 1,
+      projectId: this.$route.query.id
     }
   },
-  created() {},
   mounted() {
     this.$nextTick(() => {
-      const page = parseInt(this.$store.state.share.indexCurrentPage)
+      const page = parseInt(this.$store.state.share.leafCurrentPage)
       this.handleQuery(page)
     })
-    this.$store.commit('SET_BOARDTITLE', '项目列表')
+    this.$store.commit('SET_BOARDTITLE', '页面列表')
   },
   methods: {
     handleQuery(pageNo, refesh) {
       const that = this
-      getProjectList(this.pageSize, pageNo)
+      getBoardList(this.pageSize, pageNo, this.projectId)
         .then(res => {
-          console.log('getProjectList', res.data.projectPage)
-          that.projectPage = res.data.projectPage
-          that.records = res.data.projectPage.records
-          that.pages = res.data.projectPage.pages
+          console.log('getBoardList', res.data)
+          that.boardPage = res.data.boardPage
+          that.records = res.data.boardPage.records
+          that.pages = res.data.boardPage.pages
           that.currentPage = pageNo
           if (!that.records.length) {
             that.hasData = false
@@ -95,21 +95,20 @@ export default {
           }
         })
     },
-    handleChange(val) {
-      console.log('change:' + val)
-      this.handleQuery(val)
+    handleChange(currentPage) {
+      this.handleQuery(currentPage)
     },
     onRefresh() {
       this.handleQuery(this.currentPage, 1)
     },
     handleClick(id) {
       this.$router.push({
-        name: 'Leaf',
-        query: {
+        name: 'Board',
+        params: {
           id
         }
       })
-      this.$store.commit('SET_INDEXCURRENTPAGE', this.currentPage)
+      this.$store.commit('SET_LEAFCURRENTPAGE', this.currentPage)
     }
   }
 }
@@ -117,8 +116,8 @@ export default {
 
 <style scoped>
 .my-cell >>> .van-cell__value--alone {
-  text-align: center;
-  line-height: 50px;
+  /* text-align: center; */
+  line-height: 30px;
 }
 .page-foot {
   margin-top: 30px;

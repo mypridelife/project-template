@@ -13,7 +13,7 @@ module.exports = {
 
     // Various Dev Server settings
     host: '0.0.0.0', // can be overwritten by process.env.HOST
-    port: 4396, // can be overwritten by process.env.PORT, if port is in use, a free one will be determined
+    port: 8080, // can be overwritten by process.env.PORT, if port is in use, a free one will be determined
     autoOpenBrowser: false,
     errorOverlay: true,
     notifyOnErrors: true,
@@ -43,6 +43,9 @@ module.exports = {
   },
 
   build: {
+    // sitEnv: require('./dev.env'),//添加这行
+    // preEnv: require('./pre.env'),//添加这行
+    // prodEnv: require('./prod.env'),//添加这行
     // Template for index.html
     index: path.resolve(__dirname, '../dist/index.html'),
     // Template for ddlogin.html

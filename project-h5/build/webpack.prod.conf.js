@@ -12,6 +12,7 @@ const OptimizeCSSPlugin = require('optimize-css-assets-webpack-plugin')
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
 
 // const env = require('../config/prod.env')
+// const env = config.build[process.env.env_config+'Env']
 const env = require('../config/' + process.env.env_config + '.env')
 console.log("=============",env);
 
@@ -82,11 +83,19 @@ const webpackConfig = merge(baseWebpackConfig, {
       inject: false,
       title: '加载中...',
       ddloginapi: env.BASE_API,
+      // templateParameters: {
+      //   API_HOST: env.BASE_API,
+      // },
       minify: {
         removeComments: true,
         collapseWhitespace: true,
         removeAttributeQuotes: true
+        // more options:
+        // https://github.com/kangax/html-minifier#options-quick-reference
       }
+      // default sort mode uses toposort which cannot handle cyclic deps
+      // in certain cases, and in webpack 4, chunk order in HTML doesn't
+      // matter anyway
     }),
     // keep module.id stable when vendor modules does not change
     new webpack.HashedModuleIdsPlugin(),
