@@ -1,6 +1,6 @@
 <template>
   <div class="page">
-    404
+    hh
   </div>
 </template>
 
