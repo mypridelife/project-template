@@ -33,7 +33,7 @@ health_check() {
     echo "checking ${HEALTH_CHECK_URL}"
     while true
     do
-        status_code=`/usr/bin/curl -H 'Host:databoard.hzhengji.cn' -L -o /dev/null --connect-timeout 5 -s -w %{http_code}  ${HEALTH_CHECK_URL}`
+        status_code=`/usr/bin/curl -H 'Host:dev-material-collection.hzhengji.cn' -L -o /dev/null --connect-timeout 5 -s -w %{http_code}  ${HEALTH_CHECK_URL}`
         if [ x$status_code != x200 ];then
             sleep 1
             ((exptime++))
@@ -51,9 +51,9 @@ health_check() {
 }
 start_application() {
     dstr=`date +%Y-%m-%d-%H-%M-%S`
-    mv /home/admin/dist /usr/local/openresty/nginx/html/databoard-mobile-${dstr}
-    rm -f /usr/local/openresty/nginx/html/databoard-mobile
-    ln -s /usr/local/openresty/nginx/html/databoard-mobile-${dstr} /usr/local/openresty/nginx/html/databoard-mobile
+    mv /home/admin/dist /usr/local/openresty/nginx/html/material-collection-${dstr}
+    rm -f /usr/local/openresty/nginx/html/material-collection
+    ln -s /usr/local/openresty/nginx/html/material-collection-${dstr} /usr/local/openresty/nginx/html/material-collection
 }
 stop_application() {
     echo ''

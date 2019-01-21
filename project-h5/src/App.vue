@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <div>
+    <!-- <div>
       <van-nav-bar title="标题" style="background-color: #35495E" fixed>
         <van-icon slot="left" color="#fff" name="wap-nav" size=" 1.3em" @click="handleVisible" />
       </van-nav-bar>
@@ -11,7 +11,7 @@
           </van-cell-group>
         </div>
       </van-popup>
-    </div>
+    </div> -->
 
     <div id="body-wrapper">
       <router-view v-if="isRouterAlive" />
@@ -33,8 +33,7 @@ export default {
       isRouterAlive: true
     }
   },
-  mounted() {
-  },
+  mounted() {},
   methods: {
     handleVisible() {
       this.show = !this.show
@@ -51,7 +50,7 @@ export default {
 <style lang="less">
 #body-wrapper {
   margin: 1em;
-  margin-top: 70px;
+  // margin-top: 70px;
 }
 .van-nav-bar__title {
   font-weight: bold;

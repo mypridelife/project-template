@@ -1,8 +1,8 @@
 import request from '../utils/request'
 
-export function getProjectList(pageSize, pageNo) {
+export function getMaterialList(pageSize, pageNo) {
   return request({
-    url: '/project/page',
+    url: '/material/page',
     params: {
       pageSize,
       pageNo
